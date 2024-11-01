@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Result Checker</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { max-width: 400px; margin: 50px auto; text-align: center; }
+        input { padding: 10px; width: 100%; margin: 10px 0; }
+        button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        #resultDisplay { margin-top: 20px; font-size: 1.2em; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Check Your Result</h1>
+    <input type="text" id="rollNumber" placeholder="Enter Roll Number">
+    <button onclick="getResult()">Get Result</button>
+    <div id="resultDisplay"></div>
+</div>
+
+<script>
+        async function getResult() {
+            const rollNumber = document.getElementById('rollNumber').value;
+            const resultDisplay = document.getElementById('resultDisplay');
+
+            if (!rollNumber) {
+                resultDisplay.innerText = "Please enter a roll number.";
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/result?rollNumber=${rollNumber}`);
+                console.log(response);
+                if (response.ok) {
+                    const data = await response.json();
+                    resultDisplay.innerText = `Result: ${data.result}`;
+                } else {
+                    resultDisplay.innerText = "Result not found.";
+                }
+            } catch (error) {
+                resultDisplay.innerText = "Error fetching the result. Please try again later.";
+            }
+        }
+    </script>
+</body>
+</html>
