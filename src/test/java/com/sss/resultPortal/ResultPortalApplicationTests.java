@@ -1,13 +1,18 @@
 package com.sss.resultPortal;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ResultPortalApplicationTests {
+public class ResultPortalApplicationTests {
+
+
+	public ResultPortalApplicationTests(){
+
+	}
 
 	@Test
-	void contextLoads() {
+	public void contextLoads() {
 	}
 
 }
